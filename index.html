@@ -5,184 +5,6 @@
     <title>Flight Risk Calculator</title>
     <meta name="description" content="Flight Risk Calculator">
     <meta name="keywords" content="Pilot Checklist Risk Analysis">
-    <script>
-        vfrVals = [
-            2,
-            1,
-            2,
-            2,
-            2,
-            2,
-            2,
-            1,
-            -1,
-            2,
-            3,
-            2,
-            2,
-            2,
-            3,
-            2,
-            -1,
-            -2,
-            -1,
-            2,
-            2,
-            0,
-            2,
-            3,
-            20,
-            0,
-            3,
-            10,
-            20,
-            5,
-            10,
-            0,
-            5,
-            30,
-            0,
-            -2,
-            -1,
-            -1,
-            3,
-            1,
-            1,
-            1,
-            ,
-            -1,
-            2,
-            1,
-            2,
-            2,
-            -1,
-            -1
-        ];
-        ifrVals = [
-            3,
-            1,
-            3,
-            3,
-            2,
-            2,
-            2,
-            1,
-            -1,
-            2,
-            3,
-            2,
-            2,
-            2,
-            3,
-            2,
-            -1,
-            -3,
-            -1,
-            2,
-            2,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            1,
-            2,
-            3,
-            3,
-            -2,
-            1,
-            10,
-            2,
-            -2,
-            -1,
-            -1,
-            3,
-            1,
-            1,
-            1,
-            2,
-            -1,
-            1,
-            1,
-            2,
-            2,
-            0,
-            -1
-        ];
-        iceing = document.getElementById("35").parentElement;
-        approach = document.getElementById("43").parentElement;
-        flightFollowing = document.getElementById("49").parentElement;
-        ifrPlanVMC = document.getElementById("50").parentElement;
-
-        function conditionVFR(isVFR) {
-            iceing.hidden = isVFR;
-            approach.hidden = isVFR;
-            flightFollowing.hidden = !isVFR;
-            ifrPlanVMC.hidden = !isVFR;
-        }
-
-        function calcSum(vals) {
-            result = 0;
-            for (i = 0; i < vals.length; i++) {
-                element = document.getElementById(i + 1);
-                // console.log(element.id + ": " + element.checked);
-                if (element.checked) {
-                    // console.log(element.labels[0].textContent + ": "+ vals[i])
-                    result += vals[i];
-                    console.log(result);
-                }
-            }
-            return result;
-        }
-
-        function calculate() {
-            vals = [];
-            if (document.getElementById("ifr").checked) {
-                vals = ifrVals
-            } else {
-                vals = vfrVals
-            }
-            result = calcSum(vals);
-            resultRisk = "Risk ";
-            threasholds = [6, 9, 15];
-            switch (true) {
-                case result < threasholds[0]:
-                    resultRisk += "Minimal: G0";
-                    break;
-                case result < threasholds[1]:
-                    resultRisk += "Low: Consider Alternate Actions";
-                    break;
-                case result < threasholds[2]:
-                    resultRisk += "Medium: Consult Experienced CFI";
-                    break;
-                default:
-                    resultRisk += "High: Don't Go !!!";
-            }
-            document.getElementById("result").innerHTML = result;
-            document.getElementById("resultRisk").innerHTML = resultRisk;
-            document.getElementById("resultRisk").focus()
-        }
-
-        function toggleVis(name) {
-            for (let element of document.getElementsByName(name)) {
-                if (element.parentElement.hidden) {
-                    element.parentElement.hidden = false;
-                } else {
-                    element.parentElement.hidden = true;
-                }
-            }
-        }
-
-        function hide(name) {
-            for (let element of document.getElementsByName(name)) {
-                element.parentElement.hidden = true;
-            }
-        }
-
-        hide("detection");
-        conditionVFR(true);
-    </script>
 </head>
 
 <body>
@@ -226,8 +48,9 @@
     <label for="27"><input type="radio" id="27" name="ceilings"> Ceilings less than 3,000’ AGL<br></label>
     <label for="28"><input type="radio" id="28" name="ceilings"> Ceilings less than 1,000’AGL<br></label>
     <label for="29"><input type="radio" id="29" name="ceilings"> Ceilings less than 500’AGL<br><br></label>
-    <label for="30"><input type="checkbox" id="30" name="30" onChange="toggleVis('detection')"> Convective activity
-        within 20 NM of flight path<br></label>
+    <label for="30"><input type="checkbox" id="30" name="30" onChange="toggleVis('detection')">
+        Convective activity within 20 NM of flight path<br>
+    </label>
     <label for="31"><input type="radio" id="31" name="detection"> Convective act./ no storm-scope/detection
         capability<br></label>
     <label for="32"><input type="radio" id="32" name="detection"> Convective activity with detection
@@ -259,3 +82,183 @@
     <h2 id="result"></h2>
     <p id="resultRisk"></p>
 </body>
+<script>
+    vfrVals = [
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        -1,
+        2,
+        3,
+        2,
+        2,
+        2,
+        3,
+        2,
+        -1,
+        -2,
+        -1,
+        2,
+        2,
+        0,
+        2,
+        3,
+        20,
+        0,
+        3,
+        10,
+        20,
+        5,
+        10,
+        0,
+        5,
+        30,
+        0,
+        -2,
+        -1,
+        -1,
+        3,
+        1,
+        1,
+        1,
+        ,
+        -1,
+        2,
+        1,
+        2,
+        2,
+        -1,
+        -1
+    ];
+    ifrVals = [
+        3,
+        1,
+        3,
+        3,
+        2,
+        2,
+        2,
+        1,
+        -1,
+        2,
+        3,
+        2,
+        2,
+        2,
+        3,
+        2,
+        -1,
+        -3,
+        -1,
+        2,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        2,
+        3,
+        3,
+        -2,
+        1,
+        10,
+        2,
+        -2,
+        -1,
+        -1,
+        3,
+        1,
+        1,
+        1,
+        2,
+        -1,
+        1,
+        1,
+        2,
+        2,
+        0,
+        -1
+    ];
+    iceing = document.getElementById("35").parentElement;
+    approach = document.getElementById("43").parentElement;
+    flightFollowing = document.getElementById("49").parentElement;
+    ifrPlanVMC = document.getElementById("50").parentElement;
+
+    function conditionVFR(isVFR) {
+        iceing.hidden = isVFR;
+        approach.hidden = isVFR;
+        flightFollowing.hidden = !isVFR;
+        ifrPlanVMC.hidden = !isVFR;
+    }
+
+    function calcSum(vals) {
+        result = 0;
+        for (i = 0; i < vals.length; i++) {
+            element = document.getElementById(i + 1);
+            // console.log(element.id + ": " + element.checked);
+            if (element.checked && !element.parentElement.hidden) {
+                // console.log(element.labels[0].textContent + ": "+ vals[i])
+                result += vals[i];
+                console.log(result);
+            }
+        }
+        return result;
+    }
+
+    function calculate() {
+        vals = [];
+        if (document.getElementById("ifr").checked) {
+            vals = ifrVals
+        } else {
+            vals = vfrVals
+        }
+        result = calcSum(vals);
+        resultRisk = "Risk ";
+        threasholds = [6, 9, 15];
+        switch (true) {
+            case result < threasholds[0]:
+                resultRisk += "Minimal: G0";
+                break;
+            case result < threasholds[1]:
+                resultRisk += "Low: Consider Alternate Actions";
+                break;
+            case result < threasholds[2]:
+                resultRisk += "Medium: Consult Experienced CFI";
+                break;
+            default:
+                resultRisk += "High: Don't Go !!!";
+        }
+        document.getElementById("result").innerHTML = result;
+        document.getElementById("resultRisk").innerHTML = resultRisk;
+        document.getElementById("resultRisk").focus()
+    }
+
+    function toggleVis(name) {
+        for (let element of document.getElementsByName(name)) {
+            if (element.parentElement.hidden) {
+                element.parentElement.hidden = false;
+            } else {
+                element.parentElement.hidden = true;
+            }
+        }
+    }
+
+    function hide(name) {
+        for (let element of document.getElementsByName(name)) {
+            element.parentElement.hidden = true;
+        }
+    }
+
+    hide("detection");
+    conditionVFR(true);
+</script>
+
+</html>
